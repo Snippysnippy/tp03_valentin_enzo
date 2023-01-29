@@ -12,6 +12,7 @@ import { ErrorDirective } from './error.directive';
 import { PhoneNumberPipe } from './phone-number.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { CatalogueComponent } from './catalogue/catalogue.component';
+import { FilterPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CatalogueComponent } from './catalogue/catalogue.component';
     ErrorDirective,
     PhoneNumberPipe,
     CatalogueComponent,
+    FilterPipe,
   ],
   imports: [
     FormsModule,

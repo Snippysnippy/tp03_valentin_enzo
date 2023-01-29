@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogueService } from '../catalogue.service';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 interface Product {
   name: string;
@@ -9,27 +11,33 @@ interface Product {
 
 @Component({
   selector: 'app-catalogue',
-  template: `
-    <div *ngFor="let product of products">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ product.name }}</h5>
-          <p class="card-text">{{ product.description }}</p>
-          <h6 class="card-subtitle mb-2 text-muted">{{ product.price }} €</h6>
-          <button class="btn btn-primary" [disabled]="true">Acheter</button>
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: './catalogue.component.html'
 })
 export class CatalogueComponent implements OnInit {
+  searchTerm = '';
   products: Product[] = [];
+  filteredProducts: Product[] = [];
+  searchControl = new FormControl('');
 
   constructor(private service: CatalogueService) { }
 
   ngOnInit() {
     this.service.getCatalogue().subscribe(data => {
       this.products = data;
+      this.filteredProducts = this.products;
     });
+
+    this.searchControl.valueChanges
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged()
+      )
+      .subscribe(value => {
+        if(value) {
+          this.filteredProducts = this.products.filter(product =>
+            product.name.toLowerCase().includes(value.toLowerCase())
+          );
+        }
+      });
   }
 }

@@ -30,15 +30,27 @@ export class CatalogueService {
     const catalogue = `[
       {
         "id": 1,
-        "name": "Produit 1",
-        "description": "Description du produit 1",
-        "price": 100
+        "name": "Aiguillettes de poulet",
+        "description": "Poulet français - 1kg",
+        "price": 10
       },
       {
         "id": 2,
-        "name": "Produit 2",
-        "description": "Description du produit 2",
-        "price": 200
+        "name": "Curry Madras",
+        "description": "Marque métro - 480g",
+        "price": 9
+      },
+      {
+        "id": 3,
+        "name": "Riz Palais des Thés",
+        "description": "1kg",
+        "price": 2
+      },
+      {
+        "id": 4,
+        "name": "Dragon Quest VIII",
+        "description": "PS2- 2004",
+        "price": 20000
       }
     ]`;
 
