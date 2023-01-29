@@ -22,7 +22,15 @@ export class CatalogueComponent implements OnInit {
   constructor(private service: CatalogueService) { }
 
   ngOnInit() {
-    this.service.getCatalogue().subscribe(data => {
+    //TP3-02
+    // this.service.getCatalogue().subscribe(data => {
+    //   this.products = data;
+    //   this.filteredProducts = this.products;
+    // });
+
+    //TP3-03
+    this.service.getBouchon().subscribe(data => {
+      console.log(data);
       this.products = data;
       this.filteredProducts = this.products;
     });

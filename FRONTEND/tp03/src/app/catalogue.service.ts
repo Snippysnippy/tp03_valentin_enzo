@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,10 @@ import { of } from 'rxjs';
 export class CatalogueService {
   constructor(private http: HttpClient) { }
 
+  getBouchon(): Observable<any> {
+    return this.http.get(environment.catalogue);
+  }
+    
   postClient(clientData: any) {
     return this.http.post('/api/clients', clientData);
   }
